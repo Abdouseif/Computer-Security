@@ -351,7 +351,7 @@ namespace SecuritySender
             
             elapsedMs = watch.ElapsedMilliseconds;
 
-            return elapsedMs*1000;
+            return elapsedMs;
         }
 
         //--------------------------------------------------------------------------------------------------------------------//
@@ -698,7 +698,7 @@ namespace SecuritySender
                     break;
 
             }
-            return elapsedMs;
+            return elapsedMs*1000;
 
 
         }
