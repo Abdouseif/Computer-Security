@@ -111,200 +111,216 @@ namespace SecuritySender
 
         private void button1_Click(object sender, EventArgs e)
         {
+            textBox6.Visible = false;
+            label17.Visible = false;
+            label18.Visible = false;
+            label19.Visible = false;
+            if (!textBox1.Text.Equals("") && !textBox2.Text.Equals("") && !textBox3.Text.Equals(""))
+            {
+                string plainText = "abc KHALEDSAMEH fghijklmnop1234567";
 
-            string plainText = "abc KHALEDSAMEH fghijklmnop1234567";
-      
-            int blockSize = 8;                                     //n Bits = n/8 characters (Character size=8)
-                                                                   //0-7 plain text characters = 12 cipher text characters
-                                                                   // 8-15 PT = 24 CT, 16-23 PT = 32 CT
-                                                                   //24-31 PT = 44 CT, 32-39 PT = 56 CT
-            string initVector = "%aebcxfkbl";
-            int CTBlockSize = Program.CT_char_cout(blockSize);
-            int shamt = 6;
-            int CTRstart = 0, CTRincrement = 1;
-            string nonce = "12345678";
-            int Tlen = 5;                                         
-            int modeOfOperation = 5;
-            string ciph = "";
-            //-----------------------------------------------------------//
-            //-----------------------------------------------------------//
+                int blockSize = 8;                                     //n Bits = n/8 characters (Character size=8)
+                                                                       //0-7 plain text characters = 12 cipher text characters
+                                                                       // 8-15 PT = 24 CT, 16-23 PT = 32 CT
+                                                                       //24-31 PT = 44 CT, 32-39 PT = 56 CT
+                string initVector = "%aebcxfkbl";
+                int CTBlockSize = Program.CT_char_cout(blockSize);
+                int shamt = 6;
+                int CTRstart = 0, CTRincrement = 1;
+                string nonce = "12345678";
+                int Tlen = 5;
+                int modeOfOperation = 5;
+                string ciph = "";
+                //-----------------------------------------------------------//
+                //-----------------------------------------------------------//
 
-            plainText = textBox1.Text;
-             Console.WriteLine("Plain Text:" + plainText);
-             blockSize = int.Parse(textBox2.Text);                                   
-             modeOfOperation = (comboBox1.SelectedIndex) + 1;
-            if (comboBox1.SelectedIndex.Equals(1) || comboBox1.SelectedIndex.Equals(2))
-            {
-                initVector = textBox4.Text;
-            }
-            if (comboBox1.SelectedIndex.Equals(2))
-            {
-                shamt = int.Parse(textBox5.Text);
-            }
-            if (comboBox1.SelectedIndex.Equals(4))
-            {
-                CTRstart = int.Parse(textBox7.Text);
-                CTRincrement = int.Parse(textBox8.Text);
-            }
-            if (comboBox1.SelectedIndex.Equals(3))
-            {
-                nonce = textBox9.Text;
-            }
-             CTBlockSize = Program.CT_char_cout(blockSize);
-             long elapsedMs;
-             elapsedMs= Program.block_modes_en(plainText, 5, blockSize, initVector, shamt, CTBlockSize, CTRstart, CTRincrement, nonce, Tlen);
-            ciph = Program.getCipher();
-            textBox10.Text = ciph;
-            Console.WriteLine("Cipher Text:" + ciph);
-            if (comboBox1.SelectedIndex.Equals(0))
-            {
-                Program.SendTimeECB(blockSize.ToString());
-                Program.SendTimeECB(elapsedMs.ToString());
-                string fileDoc = @"C:\Users\Abdo\source\repos\SecurityProject\ECB.txt";
-                StreamReader reader = new StreamReader(fileDoc);
-                string inputLine;
-                int c = 0;
-                string bs = "";
-                string t = "";
-                chart1.Series["Time"].Points.Clear();
-
-                while ((inputLine = reader.ReadLine()) != null)
+                plainText = textBox1.Text;
+                Console.WriteLine("Plain Text:" + plainText);
+                blockSize = int.Parse(textBox2.Text);
+                modeOfOperation = (comboBox1.SelectedIndex) + 1;
+                if (comboBox1.SelectedIndex.Equals(1) || comboBox1.SelectedIndex.Equals(2))
                 {
-
-                    if (c == 0)
-                    {
-                        bs = inputLine;
-                        c++;
-                    }
-                    else
-                    {
-                        t = inputLine;
-                        chart1.Series["Time"].Points.AddXY( bs, int.Parse(t));
-                        c = 0;
-                    }
+                    initVector = textBox4.Text;
                 }
-                reader.Close();
-            }
-            else if (comboBox1.SelectedIndex.Equals(1))
-            {
-                Program.SendTimeCBC(blockSize.ToString());
-                Program.SendTimeCBC(elapsedMs.ToString());
-                string fileDoc = @"C:\Users\Abdo\source\repos\SecurityProject\CBC.txt";
-                StreamReader reader = new StreamReader(fileDoc);
-                string inputLine;
-                int c = 0;
-                string bs = "";
-                string t = "";
-                chart1.Series["Time"].Points.Clear();
-
-                while ((inputLine = reader.ReadLine()) != null)
+                if (comboBox1.SelectedIndex.Equals(2))
                 {
-
-                    if (c == 0)
-                    {
-                        bs = inputLine;
-                        c++;
-                    }
-                    else
-                    {
-                        t = inputLine;
-                        chart1.Series["Time"].Points.AddXY( bs, int.Parse(t));
-                        c = 0;
-                    }
+                    shamt = int.Parse(textBox5.Text);
                 }
-                reader.Close();
-
-            }
-            else if (comboBox1.SelectedIndex.Equals(2))
-            {
-                Program.SendTimeCFB(blockSize.ToString());
-                Program.SendTimeCFB(elapsedMs.ToString());
-                string fileDoc = @"C:\Users\Abdo\source\repos\SecurityProject\CFB.txt";
-                StreamReader reader = new StreamReader(fileDoc);
-                string inputLine;
-                int c = 0;
-                string bs = "";
-                string t = "";
-                chart1.Series["Time"].Points.Clear();
-
-                while ((inputLine = reader.ReadLine()) != null)
+                if (comboBox1.SelectedIndex.Equals(4))
                 {
-
-                    if (c == 0)
-                    {
-                        bs = inputLine;
-                        c++;
-                    }
-                    else
-                    {
-                        t = inputLine;
-                        chart1.Series["Time"].Points.AddXY( bs, int.Parse(t));
-                        c = 0;
-                    }
+                    CTRstart = int.Parse(textBox7.Text);
+                    CTRincrement = int.Parse(textBox8.Text);
                 }
-                reader.Close();
-
-            }
-            else if (comboBox1.SelectedIndex.Equals(3))
-            {
-                Program.SendTimeOFB(blockSize.ToString());
-                Program.SendTimeOFB(elapsedMs.ToString());
-                string fileDoc = @"C:\Users\Abdo\source\repos\SecurityProject\OFB.txt";
-                StreamReader reader = new StreamReader(fileDoc);
-                string inputLine;
-                int c = 0;
-                string bs = "";
-                string t = "";
-                chart1.Series["Time"].Points.Clear();
-
-                while ((inputLine = reader.ReadLine()) != null)
+                if (comboBox1.SelectedIndex.Equals(3))
                 {
-
-                    if (c == 0)
-                    {
-                        bs = inputLine;
-                        c++;
-                    }
-                    else
-                    {
-                        t = inputLine;
-                        chart1.Series["Time"].Points.AddXY( bs, int.Parse(t));
-                        c = 0;
-                    }
+                    nonce = textBox9.Text;
                 }
-                reader.Close();
-
-            }
-            else if (comboBox1.SelectedIndex.Equals(4))
-            {
-                Program.SendTimeCTR(blockSize.ToString());
-                Program.SendTimeCTR(elapsedMs.ToString());
-                 string fileDoc = @"C:\Users\Abdo\source\repos\SecurityProject\CTR.txt";
-                            StreamReader reader = new StreamReader(fileDoc);
-                string inputLine;
-                int c = 0;
-                string bs = "";
-                string t = "";
-                chart1.Series["Time"].Points.Clear();
-
-                while ((inputLine=reader.ReadLine()) != null)
-                { 
-
-                  if(c==0)
-                    {
-                        bs = inputLine;
-                        c++;
-                    }
-                    else
-                    {
-                        t = inputLine;
-                        chart1.Series["Time"].Points.AddXY( bs, int.Parse(t));
-                        c = 0;
-                    }
+                Tlen = int.Parse(textBox3.Text);
+                CTBlockSize = Program.CT_char_cout(blockSize);
+                long elapsedMs;
+                long sumElapsedMs=0;
+                for (int i = 0; i < 100; i++)
+                {
+                    sumElapsedMs = sumElapsedMs + Program.block_modes_en(plainText, modeOfOperation, blockSize, initVector, shamt, CTBlockSize, CTRstart, CTRincrement, nonce, Tlen);
                 }
-                reader.Close();
-                
+                elapsedMs = sumElapsedMs / 100; // take the avg of 100 Runs !!
+
+               
+
+                ciph = Program.getCipher();
+                textBox10.Text = ciph;
+                Console.WriteLine("Cipher Text:" + ciph);
+                if (comboBox1.SelectedIndex.Equals(0))
+                {
+                    Program.SendTimeECB(blockSize.ToString());
+                    Program.SendTimeECB(elapsedMs.ToString());
+                    string fileDoc = @"C:\Users\Abdo\source\repos\SecurityProject\ECB.txt";
+                    StreamReader reader = new StreamReader(fileDoc);
+                    string inputLine;
+                    int c = 0;
+                    string bs = "";
+                    string t = "";
+                    chart1.Series["Time"].Points.Clear();
+
+                    while ((inputLine = reader.ReadLine()) != null)
+                    {
+
+                        if (c == 0)
+                        {
+                            bs = inputLine;
+                            c++;
+                        }
+                        else
+                        {
+                            t = inputLine;
+                            chart1.Series["Time"].Points.AddXY(bs, int.Parse(t));
+                            c = 0;
+                        }
+                    }
+                    reader.Close();
+                }
+                else if (comboBox1.SelectedIndex.Equals(1))
+                {
+                    Program.SendTimeCBC(blockSize.ToString());
+                    Program.SendTimeCBC(elapsedMs.ToString());
+                    string fileDoc = @"C:\Users\Abdo\source\repos\SecurityProject\CBC.txt";
+                    StreamReader reader = new StreamReader(fileDoc);
+                    string inputLine;
+                    int c = 0;
+                    string bs = "";
+                    string t = "";
+                    chart1.Series["Time"].Points.Clear();
+
+                    while ((inputLine = reader.ReadLine()) != null)
+                    {
+
+                        if (c == 0)
+                        {
+                            bs = inputLine;
+                            c++;
+                        }
+                        else
+                        {
+                            t = inputLine;
+                            chart1.Series["Time"].Points.AddXY(bs, int.Parse(t));
+                            c = 0;
+                        }
+                    }
+                    reader.Close();
+
+                }
+                else if (comboBox1.SelectedIndex.Equals(2))
+                {
+                    Program.SendTimeCFB(blockSize.ToString());
+                    Program.SendTimeCFB(elapsedMs.ToString());
+                    string fileDoc = @"C:\Users\Abdo\source\repos\SecurityProject\CFB.txt";
+                    StreamReader reader = new StreamReader(fileDoc);
+                    string inputLine;
+                    int c = 0;
+                    string bs = "";
+                    string t = "";
+                    chart1.Series["Time"].Points.Clear();
+
+                    while ((inputLine = reader.ReadLine()) != null)
+                    {
+
+                        if (c == 0)
+                        {
+                            bs = inputLine;
+                            c++;
+                        }
+                        else
+                        {
+                            t = inputLine;
+                            chart1.Series["Time"].Points.AddXY(bs, int.Parse(t));
+                            c = 0;
+                        }
+                    }
+                    reader.Close();
+
+                }
+                else if (comboBox1.SelectedIndex.Equals(3))
+                {
+                    Program.SendTimeOFB(blockSize.ToString());
+                    Program.SendTimeOFB(elapsedMs.ToString());
+                    string fileDoc = @"C:\Users\Abdo\source\repos\SecurityProject\OFB.txt";
+                    StreamReader reader = new StreamReader(fileDoc);
+                    string inputLine;
+                    int c = 0;
+                    string bs = "";
+                    string t = "";
+                    chart1.Series["Time"].Points.Clear();
+
+                    while ((inputLine = reader.ReadLine()) != null)
+                    {
+
+                        if (c == 0)
+                        {
+                            bs = inputLine;
+                            c++;
+                        }
+                        else
+                        {
+                            t = inputLine;
+                            chart1.Series["Time"].Points.AddXY(bs, int.Parse(t));
+                            c = 0;
+                        }
+                    }
+                    reader.Close();
+
+                }
+                else if (comboBox1.SelectedIndex.Equals(4))
+                {
+                    Program.SendTimeCTR(blockSize.ToString());
+                    Program.SendTimeCTR(elapsedMs.ToString());
+                    string fileDoc = @"C:\Users\Abdo\source\repos\SecurityProject\CTR.txt";
+                    StreamReader reader = new StreamReader(fileDoc);
+                    string inputLine;
+                    int c = 0;
+                    string bs = "";
+                    string t = "";
+                    chart1.Series["Time"].Points.Clear();
+
+                    while ((inputLine = reader.ReadLine()) != null)
+                    {
+
+                        if (c == 0)
+                        {
+                            bs = inputLine;
+                            c++;
+                        }
+                        else
+                        {
+                            t = inputLine;
+                            chart1.Series["Time"].Points.AddXY(bs, int.Parse(t));
+                            c = 0;
+                        }
+                    }
+                    reader.Close();
+
+                }
             }
+            else { }
             
         }
 
@@ -398,6 +414,97 @@ namespace SecuritySender
 
             }
             else { label16.Visible = false; }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+           
+
+            int blockSize = 8;                                     //n Bits = n/8 characters (Character size=8)
+                                                                   //0-7 plain text characters = 12 cipher text characters
+                                                                   // 8-15 PT = 24 CT, 16-23 PT = 32 CT
+                                                                   //24-31 PT = 44 CT, 32-39 PT = 56 CT
+            string initVector = "%aebcxfkbl";
+            int CTBlockSize = Program.CT_char_cout(blockSize);
+            int shamt = 6;
+            int CTRstart = 0, CTRincrement = 1;
+            string nonce = "12345678";
+            int Tlen = 5;
+            int modeOfOperation = 5;
+            string ciph = "";
+            //-----------------------------------------------------------//
+            //-----------------------------------------------------------//
+
+            
+            blockSize = int.Parse(textBox2.Text);
+            modeOfOperation = (comboBox1.SelectedIndex) + 1;
+            if (comboBox1.SelectedIndex.Equals(1) || comboBox1.SelectedIndex.Equals(2))
+            {
+                initVector = textBox4.Text;
+            }
+            if (comboBox1.SelectedIndex.Equals(2))
+            {
+                shamt = int.Parse(textBox5.Text);
+            }
+            if (comboBox1.SelectedIndex.Equals(4))
+            {
+                CTRstart = int.Parse(textBox7.Text);
+                CTRincrement = int.Parse(textBox8.Text);
+            }
+            if (comboBox1.SelectedIndex.Equals(3))
+            {
+                nonce = textBox9.Text;
+            }
+            Tlen = int.Parse(textBox3.Text);
+            CTBlockSize = Reciever.CT_char_cout(blockSize);
+            ciph = Reciever.getCipher();
+            bool MACtest = Reciever.CheckMAC(ciph, Tlen);
+            if (MACtest)
+            {
+                Console.WriteLine("MAC is OK..");
+
+                label18.Visible = true;
+                label19.Text = "OK";
+                label19.Visible = true;
+            }
+
+            else {
+                Console.WriteLine("Bad MAC..");
+                label18.Visible = true;
+                label19.Text = "BAD";
+                label19.Visible = true;
+
+            }
+            ciph = ciph.Substring(0, ciph.Length - Tlen);
+
+            
+            textBox10.Text = ciph;
+            string PlainText=  Reciever.block_modes_en(ciph, modeOfOperation, blockSize, initVector, shamt, CTRstart, CTRincrement, nonce);
+            textBox6.Text = PlainText;
+            textBox6.Visible = true;
+            label17.Visible = true;
+
+            
+        }
+
+        private void label17_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox6_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label19_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

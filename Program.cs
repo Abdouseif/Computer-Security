@@ -348,8 +348,10 @@ namespace SecuritySender
             SendCipher(sendMessage);
            
             watch.Stop();
+            
             elapsedMs = watch.ElapsedMilliseconds;
-            return elapsedMs;
+
+            return elapsedMs*1000;
         }
 
         //--------------------------------------------------------------------------------------------------------------------//

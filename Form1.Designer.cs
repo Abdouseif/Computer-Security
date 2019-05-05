@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -59,7 +59,12 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -235,18 +240,18 @@
             // 
             // chart1
             // 
-            chartArea2.AxisX.Title = "Block Size";
-            chartArea2.AxisY.Title = "Time (ms)";
-            chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
+            chartArea4.AxisX.Title = "Block Size";
+            chartArea4.AxisY.Title = "Time (ms)";
+            chartArea4.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.chart1.Legends.Add(legend4);
             this.chart1.Location = new System.Drawing.Point(487, 67);
             this.chart1.Name = "chart1";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Time";
-            this.chart1.Series.Add(series2);
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Time";
+            this.chart1.Series.Add(series4);
             this.chart1.Size = new System.Drawing.Size(680, 432);
             this.chart1.TabIndex = 21;
             this.chart1.Text = "chart1";
@@ -274,7 +279,7 @@
             this.textBox10.Location = new System.Drawing.Point(467, 29);
             this.textBox10.Name = "textBox10";
             this.textBox10.ReadOnly = true;
-            this.textBox10.Size = new System.Drawing.Size(305, 24);
+            this.textBox10.Size = new System.Drawing.Size(689, 24);
             this.textBox10.TabIndex = 24;
             // 
             // label8
@@ -348,21 +353,80 @@
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // button3
+            // 
+            this.button3.Image = global::SecuritySender.Properties.Resources.fh;
+            this.button3.Location = new System.Drawing.Point(270, 474);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(204, 183);
+            this.button3.TabIndex = 57;
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // button1
             // 
             this.button1.Image = global::SecuritySender.Properties.Resources.encryption_1;
-            this.button1.Location = new System.Drawing.Point(90, 446);
+            this.button1.Location = new System.Drawing.Point(12, 475);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(265, 131);
+            this.button1.Size = new System.Drawing.Size(228, 182);
             this.button1.TabIndex = 8;
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(480, 612);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.ReadOnly = true;
+            this.textBox6.Size = new System.Drawing.Size(689, 24);
+            this.textBox6.TabIndex = 59;
+            this.textBox6.Visible = false;
+            this.textBox6.TextChanged += new System.EventHandler(this.textBox6_TextChanged);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(564, 588);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(67, 17);
+            this.label17.TabIndex = 58;
+            this.label17.Text = "Plain Text";
+            this.label17.Visible = false;
+            this.label17.Click += new System.EventHandler(this.label17_Click);
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(564, 654);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(77, 17);
+            this.label18.TabIndex = 60;
+            this.label18.Text = "MAC Check";
+            this.label18.Visible = false;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.BackColor = System.Drawing.SystemColors.Control;
+            this.label19.ForeColor = System.Drawing.Color.Red;
+            this.label19.Location = new System.Drawing.Point(649, 654);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(25, 17);
+            this.label19.TabIndex = 61;
+            this.label19.Text = "Ok";
+            this.label19.Visible = false;
+            this.label19.Click += new System.EventHandler(this.label19_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1179, 589);
+            this.ClientSize = new System.Drawing.Size(1179, 690);
+            this.Controls.Add(this.label19);
+            this.Controls.Add(this.label18);
+            this.Controls.Add(this.textBox6);
+            this.Controls.Add(this.label17);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.label14);
@@ -394,6 +458,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -431,6 +496,11 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label19;
     }
 }
 
