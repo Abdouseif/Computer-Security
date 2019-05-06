@@ -656,6 +656,8 @@ namespace SecuritySender
         //------------------------------------------------------------------------------------------------------------------//
         //-----------------------------------------------------------------------------------------------------------------//
 
+      
+
         public static int CT_char_cout(int blockSize)
         {
 
@@ -670,6 +672,36 @@ namespace SecuritySender
                 return 44;
             else if (blockSize >= 32 && blockSize <= 39)
                 return 56;
+            else if (blockSize >= 40 && blockSize <= 47)
+                return 64;
+            else if (blockSize >= 48 && blockSize <= 55)
+                return 76;
+            else if (blockSize >= 56 && blockSize <= 63)
+                return 88;
+            else if (blockSize >= 64 && blockSize <= 71)
+                return 96;
+            else if (blockSize >= 72 && blockSize <= 79)
+                return 108;
+            else if (blockSize >= 80 && blockSize <= 87)
+                return 120;
+            else if (blockSize > 88 && blockSize <= 95)
+                return 128;
+            else if (blockSize >= 96 && blockSize <= 103)
+                return 140;
+            else if (blockSize >= 104 && blockSize <= 111)
+                return 152;
+            else if (blockSize >= 112 && blockSize <= 119)
+                return 160;
+            else if (blockSize >= 120 && blockSize <= 127)
+                return 172;
+            else if (blockSize >= 128 && blockSize <= 135)
+                return 184;
+            else if (blockSize >= 136 && blockSize <= 143)
+                return 192;
+            else if (blockSize >= 144 && blockSize <= 151)
+                return 204;
+
+            //Max size of block = 151
             else return -1;
         }
         //------------------------------------------------------------------------------------------------------------------//
