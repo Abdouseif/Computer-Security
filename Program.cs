@@ -632,6 +632,8 @@ namespace SecuritySender
                 k += blockSize;
                 string sendBlock = XORString(DesEncrypt(Counter, deskey).Substring(0, blockSize), block);
                 Counter = (int.Parse(Counter) + increment).ToString();
+                while(Counter.Length<blockSize)
+                { Counter = "0" + Counter; }
                 ciphertext += sendBlock;
             }
 
